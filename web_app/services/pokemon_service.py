@@ -5,10 +5,10 @@ from ..models import Pokemon
 
 class PokemonService:
     BASE_URL = "https://pokeapi.co/api/v2"
-    TOTAL_POKEMONS = 150  # Total de pokémon que queremos
+    TOTAL_POKEMONS = 151  # Total de pokémon que queremos
     
     @staticmethod
-    def fetch_pokemons(limit: int = 150) -> List[Dict]:
+    def fetch_pokemons(limit: int = 151) -> List[Dict]:
         """Obtiene los primeros N pokémon de la API"""
         response = requests.get(f"{PokemonService.BASE_URL}/pokemon?limit={limit}")
         pokemons = response.json()['results']
@@ -47,19 +47,21 @@ class PokemonService:
             )
     
     @staticmethod
-    def get_missing_pokemon_count(user) -> Tuple[int, int]:
+    def get_missing_pokemon_count(user, total_pokemons) -> Tuple[int, int]:
         """
         Retorna la cantidad de pokémon faltantes y el total deseado
         """
         current_count = Pokemon.objects.filter(user=user).count()
-        missing = PokemonService.TOTAL_POKEMONS - current_count
-        return missing, PokemonService.TOTAL_POKEMONS
+        missing = total_pokemons - current_count
+        return missing, total_pokemons
 
     @staticmethod
-    def fetch_missing_pokemons(user) -> List[Dict]:
+    def fetch_missing_pokemons(user, total_pokemons, load_count) -> List[Dict]:
         """
         Obtiene solo los pokémon que faltan para el usuario
         """
         existing_ids = set(Pokemon.objects.filter(user=user).values_list('pokemon_id', flat=True))
-        all_pokemons = PokemonService.fetch_pokemons(PokemonService.TOTAL_POKEMONS)
-        return [p for p in all_pokemons if p['pokemon_id'] not in existing_ids]
+        all_pokemons = PokemonService.fetch_pokemons(total_pokemons)
+        missing_pokemons = [
+            p for p in all_pokemons if p['pokemon_id'] not in existing_ids]
+        return missing_pokemons[:load_count]
