@@ -1,0 +1,14 @@
+<div class="list-group">
+    {% for pokemon in pokemons %}
+        <a href="{% url 'pokemon_detail' pokemon.pokemon_id %}" 
+           class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-capitalize">
+                    #{{ pokemon.pokemon_id }} - {{ pokemon.name }}
+                </h5>
+                <small>EXP: {{ pokemon.base_experience }}</small>
+            </div>
+            <p class="mb-1">Peso: {{ pokemon.weight }}kg | Altura: {{ pokemon.height }}m</p>
+        </a>
+    {% endfor %}
+</div>

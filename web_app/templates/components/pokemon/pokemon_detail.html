@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Pokédex</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ pokemon.name|title }}</li>
+        </ol>
+    </nav>
+
+    <div class="card">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ pokemon.image_url }}" class="img-fluid rounded-start p-3" alt="{{ pokemon.name }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title text-capitalize">{{ pokemon.name }}</h2>
+                    
+                    <div class="mb-3">
+                        <h5>Información básica</h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Peso:</strong> {{ pokemon.weight }}kg</li>
+                            <li><strong>Altura:</strong> {{ pokemon.height }}m</li>
+                            <li><strong>Experiencia base:</strong> {{ pokemon.base_experience }}</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-3">
+                        <h5>Tipos</h5>
+                        {% for type in pokemon.types %}
+                            <span class="badge bg-primary me-1">{{ type.type.name }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mb-3">
+                        <h5>Estadísticas</h5>
+                        {% for stat in pokemon.stats %}
+                            <div class="mb-2">
+                                <label class="text-capitalize">{{ stat.stat.name }}</label>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" 
+                                         style="width: {{ stat.base_stat }}%" 
+                                         aria-valuenow="{{ stat.base_stat }}" 
+                                         aria-valuemin="0" 
+                                         aria-valuemax="100">
+                                        {{ stat.base_stat }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

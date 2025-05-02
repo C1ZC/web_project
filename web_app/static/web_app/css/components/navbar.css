@@ -1,0 +1,19 @@
+.navbar {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.nav-link {
+    color: var(--dark);
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}

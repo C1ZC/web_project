@@ -1,0 +1,94 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+
+# Virtual Environment
+.env
+.venv
+venv/
+ENV/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# Base de datos SQLite (si estás usando SQLite)
+*.sqlite3
+*.sqlite3-journal
+
+# Archivos de configuración local
+local_settings.py
+
+# Archivos de caché
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de registro
+*.log
+
+# Archivos temporales
+*.swp
+*.swo
+*~
+
+# Archivos de cobertura de pruebas
+.coverage
+htmlcov/
+
+# Archivos de dependencias
+requirements.txt.lock
+pip-log.txt
+
+# Archivos generados
+*.mo
+*.pot
+
+# Archivos de migraciones de Django
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Archivos de seguridad
+*.pem
+*.key
+*.crt
+
+# Docker
+.docker/
+docker-compose.override.yml

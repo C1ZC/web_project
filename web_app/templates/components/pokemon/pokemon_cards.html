@@ -1,0 +1,23 @@
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for pokemon in pokemons %}
+        <div class="col">
+            <div class="card h-100">
+                <img src="{{ pokemon.image_url }}" class="card-img-top p-3" alt="{{ pokemon.name }}">
+                <div class="card-body">
+                    <h5 class="card-title text-capitalize">
+                        #{{ pokemon.pokemon_id }} - {{ pokemon.name }}
+                    </h5>
+                    <p class="card-text">
+                        <strong>Peso:</strong> {{ pokemon.weight }}kg<br>
+                        <strong>Altura:</strong> {{ pokemon.height }}m<br>
+                        <strong>Experiencia base:</strong> {{ pokemon.base_experience }}
+                    </p>
+                    <a href="{% url 'pokemon_detail' pokemon.pokemon_id %}" 
+                       class="btn btn-primary">
+                        Ver detalles
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

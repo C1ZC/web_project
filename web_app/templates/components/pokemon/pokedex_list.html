@@ -1,0 +1,95 @@
+{% load static %}
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="input-group">
+            <input type="text" id="search-input" class="form-control" 
+                   placeholder="Buscar Pokémon..." value="{{ search }}">
+            <button type="button" class="btn btn-primary" id="search-btn">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <select id="order-select" class="form-select">
+            <option value="pokemon_id" {% if current_order == 'pokemon_id' %}selected{% endif %}>
+                Número (Menor a Mayor)
+            </option>
+            <option value="pokemon_id_desc" {% if current_order == 'pokemon_id_desc' %}selected{% endif %}>
+                Número (Mayor a Menor)
+            </option>
+            <option value="name" {% if current_order == 'name' %}selected{% endif %}>
+                Nombre (A-Z)
+            </option>
+            <option value="name_desc" {% if current_order == 'name_desc' %}selected{% endif %}>
+                Nombre (Z-A)
+            </option>
+            <option value="weight" {% if current_order == 'weight' %}selected{% endif %}>
+                Peso (Menor a Mayor)
+            </option>
+            <option value="weight_desc" {% if current_order == 'weight_desc' %}selected{% endif %}>
+                Peso (Mayor a Menor)
+            </option>
+            <option value="experience" {% if current_order == 'experience' %}selected{% endif %}>
+                Experiencia (Menor a Mayor)
+            </option>
+            <option value="experience_desc" {% if current_order == 'experience_desc' %}selected{% endif %}>
+                Experiencia (Mayor a Menor)
+            </option>
+        </select>
+    </div>
+    <div class="col-md-4 text-end">
+        <div class="btn-group" role="group">
+            <button type="button" data-view="cards" 
+                    class="btn btn-outline-primary view-btn {% if view_type == 'cards' %}active{% endif %}">
+                <i class="bi bi-grid"></i> Cards
+            </button>
+            <button type="button" data-view="list" 
+                    class="btn btn-outline-primary view-btn {% if view_type == 'list' %}active{% endif %}">
+                <i class="bi bi-list"></i> Lista
+            </button>
+        </div>
+    </div>
+</div>
+
+{% if pokemons.paginator.num_pages > 1 %}
+<nav aria-label="Navegación de páginas" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if pokemons.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
+                    <i class="bi bi-chevron-double-left"></i>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pokemons.previous_page_number }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
+                    <i class="bi bi-chevron-left"></i>
+                </a>
+            </li>
+        {% endif %}
+
+        {% for num in pokemons.paginator.page_range %}
+            {% if num > pokemons.number|add:'-3' and num < pokemons.number|add:'3' %}
+                <li class="page-item {% if num == pokemons.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
+                        {{ num }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if pokemons.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pokemons.next_page_number }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pokemons.paginator.num_pages }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
+                    <i class="bi bi-chevron-double-right"></i>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
