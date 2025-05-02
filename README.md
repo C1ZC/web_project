@@ -84,9 +84,9 @@ DB_ENCRYPTION=no
 
 3. Verificar la conexión a la base de datos:
 ```bash
-python manage.py dbshell
+python manage.py runserver
 ```
-Si la conexión es exitosa, verás el prompt de SQL Server.
+Si la conexión es exitosa, te dara url y te dira algo de migrate.
 
 4. Aplicar migraciones:
 ```bash
