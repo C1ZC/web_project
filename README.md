@@ -20,7 +20,7 @@ Una aplicación web que permite gestionar tu colección personal de Pokémon uti
 - pip (gestor de paquetes de Python)
 - Entorno virtual de Python (venv)
 
-## Instalación
+## Instalación de comandos en la terminal
 
 1. Clonar el repositorio:
 ```bash
