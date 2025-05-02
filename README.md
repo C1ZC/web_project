@@ -27,9 +27,9 @@ Una aplicación web que permite gestionar tu colección personal de Pokémon uti
 git clone https://github.com/C1ZC/web_proyect.git
 
 ```
-2. Clonar el repositorio:
+2. Ingregar a la carpeta el repositorio:
 ```bash
-gcd .\web_project\
+cd .\web_project\
 
 ```
 
