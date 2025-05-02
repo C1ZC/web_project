@@ -27,14 +27,19 @@ Una aplicación web que permite gestionar tu colección personal de Pokémon uti
 git clone https://github.com/C1ZC/web_proyect.git
 
 ```
+2. Clonar el repositorio:
+```bash
+gcd .\web_project\
 
-2. Configurar entorno virtual:
+```
+
+3. Configurar entorno virtual:
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
 ```
 
-3. Instalar dependencias:
+4. Instalar dependencias:
 ```bash
 pip install -r requirements.txt
 ```
