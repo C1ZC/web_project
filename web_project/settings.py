@@ -22,13 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-#SECRET_KEY = 'django-insecure-9t4clz*)ou#r7f0@-_6gn842sozvnkbp=+xl595j#9#0t+8-rj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tudominio.com']  # Replace with your domain or IP address
-
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tudominio.com']  # Replace with your domain or IP address
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')  # Add more hosts from environment variable
 
 # Application definition
 
