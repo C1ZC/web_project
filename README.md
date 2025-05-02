@@ -39,10 +39,16 @@ python -m venv .venv
 .venv\Scripts\activate
 ```
 
-4. Instalar dependencias:
+4. Instalar updates:
+```bash
+python.exe -m pip install --upgrade pip
+```
+
+5. Instalar dependencias:
 ```bash
 pip install -r requirements.txt
 ```
+
 
 ## Configuración
 
