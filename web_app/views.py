@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .services.pokemon_service import PokemonService
-from .models import Pokemon, UserPreferences
-from django.core.paginator import Paginator
 from .services.pokemon_dashboard import PokemonDashboardService
 from .services.auth import AuthService
 from .services.home_service import HomeService
