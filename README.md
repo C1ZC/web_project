@@ -2,6 +2,13 @@
 
 Una aplicación web que permite gestionar tu colección personal de Pokémon utilizando la PokeAPI.
 
+## 🎥 Demo en Video
+
+Mira el paso a paso completo en YouTube:
+
+[![Ver en YouTube](https://img.youtube.com/vi/pjNC5sXYdu4/0.jpg)](https://youtu.be/pjNC5sXYdu4)
+
+
 ## Características Principales
 
 - Sistema de autenticación de usuarios
