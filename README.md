@@ -27,7 +27,7 @@ Una aplicación web que permite gestionar tu colección personal de Pokémon uti
 git clone https://github.com/C1ZC/web_project.git
 
 ```
-2. Ingregar a la carpeta el repositorio:
+2. Ingresar a la carpeta el repositorio:
 ```bash
 cd .\web_project\
 
@@ -39,7 +39,7 @@ python -m venv .venv
 .venv\Scripts\activate
 ```
 
-4. Instalar updates:
+4. Actualizar pip:
 ```bash
 python.exe -m pip install --upgrade pip
 ```
@@ -99,10 +99,13 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-username: admin
-email: admin@mail.com
-pass: admin123
-
+### Sección "Crear superusuario"
+- Usa dos puntos después de cada campo.
+```markdown
+username: admin  
+email: admin@mail.com  
+password: admin123
+```
 
 6. Compilar estáticos:
 ```bash
