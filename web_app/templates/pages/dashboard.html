@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard de Pokémon{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'web_app/css/pages/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Resumen de estadísticas -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="stats-card card bg-primary text-white h-100">
+                <div class="card-body">
+                    <div class="stat-icon">
+                        <i class="bi bi-collection"></i>
+                    </div>
+                    <h5 class="card-title">Total de Pokémon</h5>
+                    <h2 class="mb-0">{{ stats.total }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="stats-card card bg-success text-white h-100">
+                <div class="card-body">
+                    <div class="stat-icon">
+                        <i class="bi bi-star"></i>
+                    </div>
+                    <h5 class="card-title">Mayor Experiencia</h5>
+                    <h3 class="mb-0">{{ stats.highest_exp.name }}</h3>
+                    <small>{{ stats.highest_exp.base_experience }} XP</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="stats-card card bg-info text-white h-100">
+                <div class="card-body">
+                    <div class="stat-icon">
+                        <i class="bi bi-heart"></i>
+                    </div>
+                    <h5 class="card-title">Menor HP</h5>
+                    <h3 class="mb-0">{{ stats.lowest_hp.name }}</h3>
+                    <small>{{ stats.lowest_hp.stats.0.base_stat }} HP</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="stats-card card bg-dark text-white h-100">
+                <div class="card-body">
+                    <div class="stat-icon">
+                        <i class="bi bi-moon-stars"></i>
+                    </div>
+                    <h5 class="card-title">Pokémon Tipo Dark</h5>
+                    <h2 class="mb-0">{{ stats.dark_count }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="row">
+        <div class="col-xl-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="typesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="statsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="experienceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const chartData = {{ chart_data|safe }};
+    console.log('Datos cargados:', chartData);
+</script>
+<script src="{% static 'web_app/js/dashboard.js' %}?v={{ timestamp }}"></script>
+{% endblock %}

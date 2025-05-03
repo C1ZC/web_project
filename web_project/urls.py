@@ -30,4 +30,5 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
     path('pokemon/<int:pokemon_id>/', views.pokemon_detail, name='pokemon_detail'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
