@@ -8,6 +8,15 @@ Mira el paso a paso completo en YouTube:
 
 [![Ver en YouTube](https://img.youtube.com/vi/pjNC5sXYdu4/0.jpg)](https://youtu.be/pjNC5sXYdu4)
 
+## 🌐 Demo en Vivo
+
+Prueba la aplicación en vivo (versión con PostgreSQL):
+- **URL**: [https://web-project-newl.onrender.com/](https://web-project-newl.onrender.com/)
+- **Usuario**: admin
+- **Contraseña**: admin123
+
+> Nota: Esta versión está desplegada en Render (plan gratuito) y utiliza PostgreSQL como base de datos.
+> Puedes encontrar el código específico para el despliegue en [este repositorio](https://github.com/C1ZC/app_pokemon/).
 
 ## Características Principales
 
