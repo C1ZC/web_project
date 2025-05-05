@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="container py-4">
+    <!-- Configuración -->
     <div class="row mb-4">
         <div class="col-12">
             <form method="get" class="d-flex align-items-center">
@@ -22,6 +23,8 @@
             </form>
         </div>
     </div>
+
+    <!-- Estado de la colección -->
     <div class="row mb-4">
         <div class="col-12">
             <div class="card">
@@ -49,14 +52,7 @@
         </div>
     </div>
 
-    {% if pokemons %}
-        {% include 'components/pokemon/pokedex_list.html' %}
-        
-        {% if view_type == 'cards' %}
-            {% include 'components/pokemon/pokemon_cards.html' %}
-        {% else %}
-            {% include 'components/pokemon/pokemon_list.html' %}
-        {% endif %}
-    {% endif %}
+    <!-- Lista de Pokémon -->
+    {% include 'components/pokemon/pokedex_list.html' %}
 </div>
 {% endblock %}

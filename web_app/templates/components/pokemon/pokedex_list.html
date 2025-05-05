@@ -52,44 +52,63 @@
     </div>
 </div>
 
-{% if pokemons.paginator.num_pages > 1 %}
-<nav aria-label="Navegación de páginas" class="mt-4">
-    <ul class="pagination justify-content-center">
-        {% if pokemons.has_previous %}
-            <li class="page-item">
-                <a class="page-link" href="?page=1&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
-                    <i class="bi bi-chevron-double-left"></i>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="?page={{ pokemons.previous_page_number }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
-                    <i class="bi bi-chevron-left"></i>
-                </a>
-            </li>
-        {% endif %}
+<!-- Mensaje cuando no hay resultados -->
+{% if search and pokemons|length == 0 %}
+    <div class="alert alert-warning text-center mt-4 fade-in">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        <p class="mb-3">No se encontraron Pokémon que coincidan con "{{ search }}"</p>
+        <a href="{% url 'home' %}" class="btn btn-primary">
+            <i class="bi bi-house-door me-2"></i>Volver al inicio
+        </a>
+    </div>
+{% else %}
+    <!-- Lista o cards de Pokémon -->
+    {% if view_type == 'cards' %}
+        {% include 'components/pokemon/pokemon_cards.html' %}
+    {% else %}
+        {% include 'components/pokemon/pokemon_list.html' %}
+    {% endif %}
 
-        {% for num in pokemons.paginator.page_range %}
-            {% if num > pokemons.number|add:'-3' and num < pokemons.number|add:'3' %}
-                <li class="page-item {% if num == pokemons.number %}active{% endif %}">
-                    <a class="page-link" href="?page={{ num }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
-                        {{ num }}
-                    </a>
-                </li>
-            {% endif %}
-        {% endfor %}
+    <!-- Paginación -->
+    {% if pokemons.paginator.num_pages > 1 %}
+        <nav aria-label="Navegación de páginas" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if pokemons.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
+                            <i class="bi bi-chevron-double-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ pokemons.previous_page_number }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+                {% endif %}
 
-        {% if pokemons.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ pokemons.next_page_number }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
-                    <i class="bi bi-chevron-right"></i>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="?page={{ pokemons.paginator.num_pages }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
-                    <i class="bi bi-chevron-double-right"></i>
-                </a>
-            </li>
-        {% endif %}
-    </ul>
-</nav>
+                {% for num in pokemons.paginator.page_range %}
+                    {% if num > pokemons.number|add:'-3' and num < pokemons.number|add:'3' %}
+                        <li class="page-item {% if num == pokemons.number %}active{% endif %}">
+                            <a class="page-link" href="?page={{ num }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
+                                {{ num }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if pokemons.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ pokemons.next_page_number }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ pokemons.paginator.num_pages }}&search={{ search }}&order_by={{ current_order }}&view_type={{ view_type }}">
+                            <i class="bi bi-chevron-double-right"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 {% endif %}
